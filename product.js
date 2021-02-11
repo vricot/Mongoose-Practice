@@ -10,13 +10,29 @@ mongoose.connect('mongodb://localhost:27017/shopApp', {useNewUrlParser: true, us
 })
 
 const productSchema = new mongoose.Schema({
-//this syntax alllows you to make a property required
+//this syntax alllows you to make a property required or add a default value
     name: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 30
     },
     price: {
         type: Number
+    },
+    onSale: {
+        type: Boolean,
+        default: false
+    },
+    categories: [String],
+    qty: {
+        online: {
+            type: Number,
+            default: 0
+        },
+        inStore: {
+            type: Number,
+            default: 0
+        }
     }
 });
 
